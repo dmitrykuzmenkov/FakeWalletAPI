@@ -1,1 +1,3 @@
+box@134.209.85.139: production
 dev: nginx php watcher db cache
+production: nginx php watcher db cache
