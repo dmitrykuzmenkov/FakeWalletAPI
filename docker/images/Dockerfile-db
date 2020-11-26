@@ -1,0 +1,6 @@
+FROM mariadb:10.5.5-focal
+LABEL maintainer="Muvon Co. Ltd <contact@muvon.io>"
+
+RUN mkdir -p /var/log/mysql/binlog && chown mysql:mysql /var/log/mysql/binlog
+COPY docker/containers/db/config/my.cnf /etc/mysql/conf.d/my.cnf
+COPY docker/containers/db/initdb /docker-entrypoint-initdb.d

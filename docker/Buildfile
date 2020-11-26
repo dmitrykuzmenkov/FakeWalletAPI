@@ -1,3 +1,4 @@
 php: -t ${COMPOSE_PROJECT_NAME}/php:${REVISION}
 nginx: -t ${COMPOSE_PROJECT_NAME}/nginx:${REVISION}
 watcher: -t ${COMPOSE_PROJECT_NAME}/watcher:${REVISION}
+db: -t ${COMPOSE_PROJECT_NAME}/db:10.5.5-a

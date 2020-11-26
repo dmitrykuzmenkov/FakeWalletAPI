@@ -3,4 +3,5 @@ yoda compose "$@"
 cat <<EOF
 volumes:
   env-storage:
+  db-storage:
 EOF

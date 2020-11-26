@@ -21,7 +21,7 @@ DOCKER_ROOT=$(cd "${BASH_SOURCE%/*}" && pwd)
 export HOSTNAME=${HOSTNAME:-$(hostname)}
 export ENV=${ENV:-dev}
 
-export COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-"FakeWalletAPI"}
+export COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME:-"fake-wallet-api"}
 export COMPOSE_HTTP_TIMEOUT=${COMPOSE_HTTP_TIMEOUT:-300}
 export COMPOSE_FILE="$DOCKER_ROOT/docker-compose.$ENV.yml"
 
