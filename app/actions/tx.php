@@ -7,5 +7,5 @@
 use App\Model\Tx;
 
 return View::fromString(json_encode(
-  Tx::create()->getList(['address' => $addresses])
+  array_values(Tx::create()->getList(['address' => $addresses]))
 ));
