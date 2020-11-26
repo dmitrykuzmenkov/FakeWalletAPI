@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+if [[ -z `php -m | grep memcached$` ]]; then
+  echo 'Cant find memcached module in `php -m`'
+  exit 1
+fi

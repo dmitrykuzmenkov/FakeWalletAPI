@@ -12,7 +12,7 @@ server {
   error_log {{LOG_DIR}}/nginx-error.log;
 
   listen   {{SERVER_PORT}} {{SERVER_PROTOCOL}};
-  server_name  {{SERVER_NAME}};
+  server_name _;
   client_max_body_size {{UPLOAD_MAX_FILESIZE}};
 
   include {{CONFIG_DIR}}/nginx_route_map.conf;

@@ -1,7 +1,14 @@
 FROM dmitrykuzmenkov/php:7.1.29-fpm
 LABEL maintainer="Dmitrii Kuzmenkov <dmitrii@kuzmenkov.me>"
 
-RUN apk add --update bash openssl && \
+ENV BUILD_DEPS="curl curl-dev cyrus-sasl-dev autoconf automake yaml-dev build-base zlib-dev file libmemcached-dev"
+RUN apk add --update bash openssl $BUILD_DEPS&& \
+  curl -sSL https://github.com/php-memcached-dev/php-memcached/archive/v3.1.5.tar.gz | tar xzf - && \
+    cd php-memcached-3.1.5 && phpize && \
+    ./configure --prefix=/usr && make -j4 && make install && \
+    cd .. && rm -fr php-memcached-3.1.5 && \
+  pecl install msgpack igbinary yaml redis && \
+  apk del $BBUILD_DEPS && \
   rm -fr /var/cache/apk/* && \
   rm -fr /tmp/*
 

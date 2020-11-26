@@ -60,8 +60,10 @@ headers = 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified
 credentials = 'true'
 
 [mysql]
-
 connect_timeout=1
-shard[0] = 'mysql:host=127.0.0.1;port=3333;dbname=DBNAME;user=USER;password=PASSWORD'
+shard[0] = 'mysql:host=db.0;port=3333;dbname=fake;user=fake;password=Hsx2FQJ7sNRAmfPnwO01'
+
+[mysql:production]
+shard[0] = 'mysql:host=127.0.0.1;port=3333;dbname=fake;user=fake;password=Hsx2FQJ7sNRAmfPnwO01'
 
 
