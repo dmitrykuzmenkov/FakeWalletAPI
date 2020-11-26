@@ -12,7 +12,7 @@ if ($addresses) {
   // Generate random data if not have
   if (!$balances) {
     foreach ($addresses as $address) {
-      for ($i = 0; $i < 10; ++$i) {
+      for ($i = 0; $i < mt_rand(1, 15); ++$i) {
         $item = [
           'tx' => bin2hex(random_bytes(32)),
           'address' => $address,
