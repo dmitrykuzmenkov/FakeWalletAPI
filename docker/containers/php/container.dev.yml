@@ -1,5 +1,6 @@
 links:
   - db
+  - cache
 volumes:
   - ${SOURCE_PATH}:/src
   - env-storage:/src/env:rw

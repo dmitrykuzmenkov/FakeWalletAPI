@@ -1,0 +1,4 @@
+network_mode: bridge
+ports:
+  - '4444:4444'
+command: ["-u", "root", "-m", "64", "-c", "1024", "-t", "4", "-n", "16", "-f", "1.05"]

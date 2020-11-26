@@ -67,3 +67,21 @@ shard[0] = 'mysql:host=db.0;port=3333;dbname=fake;user=fake;password=Hsx2FQJ7sNR
 shard[0] = 'mysql:host=127.0.0.1;port=3333;dbname=fake;user=fake;password=Hsx2FQJ7sNRAmfPnwO01'
 
 
+[memcache]
+host = cache.0
+port = 4444
+persistent = 0
+compression = true
+binary_protocol = true
+connect_timeout = 5
+retry_timeout = 5
+send_timeout = 5
+recv_timeout = 5
+poll_timeout = 5
+key_prefix = '{{PROJECT}}:'
+
+[memcache:production]
+host = 127.0.0.1
+
+
+

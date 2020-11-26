@@ -1,0 +1,12 @@
+image: memcached:1.6.6-alpine
+labels:
+  - role=cache
+network_mode: host
+restart: unless-stopped
+ulimits:
+  nproc: 65535
+  nofile:
+    soft: 50000
+    hard: 100000
+entrypoint: ["memcached"]
+command: ["-u", "root", "-l", "127.0.0.1:4444", "-m", "128", "-c", "8192", "-t", "6", "-n", "16", "-f", "1.05"]
