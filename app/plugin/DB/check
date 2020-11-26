@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+if [[ -z `mysql --version` ]]; then
+  echo 'Cant find mysql installed'
+  exit 1
+fi
+
+if [[ -z `php -m | grep mysqli$` ]]; then
+  echo 'Cant find mysql in php modules `php -m`'
+  exit 1
+fi

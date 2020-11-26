@@ -1,0 +1,6 @@
+FROM dmitrykuzmenkov/php:7.1.29-fpm
+LABEL maintainer="Dmitrii Kuzmenkov <dmitrii@kuzmenkov.me>"
+
+RUN apk update && apk add bash curl inotify-tools && rm -fr /var/cache/apk/*
+
+ENTRYPOINT ["/src/docker/containers/watcher/entrypoint"]

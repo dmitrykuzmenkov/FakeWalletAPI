@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# shellcheck source=./env.sh
+source "$(dirname $0)/../env.sh"
+
+[[ -z "$1" ]] && echo 'Usage: php-exec [code | php_file]' && exit 1
+php=$(which php)
+config=$($php --ini | head -n 1)
+config=${config##* }
+
+OPTS=''
+if [[ -f $config ]]; then
+  OPTS='-c '$config
+fi
+code=$(test -f "$1" && echo "include '$1'" || echo "$1");
+$php $OPTS <<EOF
+<?php
+  include getenv('KISS_CORE');
+
+  // Получаем ответ   и выполняем запрос
+  try {
+    App::start();
+    Autoload::register('Plugin', getenv('APP_DIR') . '/plugin');
+    Autoload::register('App', getenv('APP_DIR') . '/src');
+    Autoload::register('App\Model', getenv('APP_DIR') . '/src/model');
+    Autoload::register('App\Component', getenv('APP_DIR') . '/src/component');
+    Autoload::register('App\Lib', getenv('APP_DIR') . '/src/lib');
+
+    \$opt_string = trim('${@:2}');
+    foreach (explode('--', \$opt_string) as \$param) {
+      if (false === strpos(\$param, '=')) {
+        continue;
+      }
+      [\$key, \$value] = explode('=', trim(\$param));
+      Input::set(\$key, \$value);
+    }
+
+    $code;
+    App::stop();
+  } catch (Exception \$E) {
+    echo 'Error: ' . \$E->getMessage() . PHP_EOL . 'More info: tail -f $LOG_DIR/' . gmdate('Ymd') . '-error.log';
+  }
+EOF
+echo
